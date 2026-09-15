@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Add Task</title>
+    <title>Edit Task</title>
 
 
     <style>
@@ -150,7 +150,6 @@
             background: white;
         }
 
-
     </style>
 
 </head>
@@ -171,12 +170,12 @@
 
 
     <h1>
-        ✨ Add New Task
+        ✏️ Edit Task
     </h1>
 
 
     <p class="subtitle">
-        Add something you want to get done.
+        Update the details of your task.
     </p>
 
 
@@ -192,11 +191,12 @@
                 Task Title
             </label>
 
+
             <input
                 type="text"
                 id="title"
                 name="title"
-                placeholder="What needs to be done?"
+                value="{{ task.title }}"
                 required
             >
 
@@ -209,11 +209,11 @@
                 Description
             </label>
 
+
             <textarea
                 id="description"
                 name="description"
-                placeholder="Add some details..."
-            ></textarea>
+            >{{ task.description }}</textarea>
 
         </div>
 
@@ -224,28 +224,48 @@
                 Category
             </label>
 
+
             <select
                 id="category"
                 name="category"
             >
 
-                <option value="Self">
+                <option
+                    value="Self"
+                    {% if task.category == "Self" %}selected{% endif %}
+                >
                     🏠 Self
                 </option>
 
-                <option value="Work">
+
+                <option
+                    value="Work"
+                    {% if task.category == "Work" %}selected{% endif %}
+                >
                     💼 Work
                 </option>
 
-                <option value="Study">
+
+                <option
+                    value="Study"
+                    {% if task.category == "Study" %}selected{% endif %}
+                >
                     📚 Study
                 </option>
 
-                <option value="Personal">
+
+                <option
+                    value="Personal"
+                    {% if task.category == "Personal" %}selected{% endif %}
+                >
                     👤 Personal
                 </option>
 
-                <option value="Other">
+
+                <option
+                    value="Other"
+                    {% if task.category == "Other" %}selected{% endif %}
+                >
                     📌 Other
                 </option>
 
@@ -261,6 +281,7 @@
                 <input
                     type="checkbox"
                     name="starred"
+                    {% if task.starred %}checked{% endif %}
                 >
 
                 ⭐ Mark as important
@@ -281,7 +302,7 @@
 
 
             <button type="submit">
-                Add Task
+                Save Changes
             </button>
 
         </div>
